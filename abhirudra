@@ -1,0 +1,70 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function ProposalUI() {
+  const [accepted, setAccepted] = useState(false);
+
+  return (
+    <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-pink-200 to-rose-400">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="bg-white rounded-2xl shadow-xl p-8 text-center max-w-md"
+      >
+        {!accepted ? (
+          <>
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              <Heart className="mx-auto text-red-500" size={50} />
+            </motion.div>
+
+            <h1 className="text-2xl font-bold mt-4">Abhisikta, I have something to ask... 💖</h1>
+            <p className="mt-2 text-gray-600">
+              Abhisikta Koner, you make my life beautiful. Every moment with you is special ❤️
+            </p>
+
+            <h2 className="text-xl font-semibold mt-6">
+              Abhisikta Koner, will you be mine forever? 💍
+            </h2>
+
+            <div className="flex justify-center gap-4 mt-6">
+              <Button
+                className="bg-green-500 hover:bg-green-600"
+                onClick={() => setAccepted(true)}
+              >
+                Yes 💖
+              </Button>
+              <Button
+                className="bg-red-500 hover:bg-red-600"
+                onMouseEnter={(e) => {
+                  const btn = e.target;
+                  btn.style.position = "absolute";
+                  btn.style.top = Math.random() * 300 + "px";
+                  btn.style.left = Math.random() * 300 + "px";
+                }}
+              >
+                No 😢
+              </Button>
+            </div>
+          </>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <Heart className="mx-auto text-red-500" size={60} />
+            <h1 className="text-2xl font-bold mt-4">Yay! 💍</h1>
+            <p className="mt-2 text-gray-600">
+              Abhisikta, you just made me the happiest person alive ❤️
+            </p>
+          </motion.div>
+        )}
+      </motion.div>
+    </div>
+  );
+}
