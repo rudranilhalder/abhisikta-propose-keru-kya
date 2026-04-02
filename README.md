@@ -1,1 +1,0 @@
-# abhisikta-propose-keru-kya
